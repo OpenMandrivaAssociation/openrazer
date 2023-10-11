@@ -16,7 +16,7 @@ BuildArch: noarch
 
 Requires: openrazer-kernel-modules-dkms
 Requires: openrazer-daemon
-Requires: python3-openrazer
+Requires: python-openrazer
 
 %description
 Meta package for installing all required openrazer packages.
@@ -47,27 +47,18 @@ BuildRequires: python-setuptools
 Requires: openrazer-kernel-modules-dkms
 Requires: python
 
-%if 0%{?suse_version}
-Requires: dbus-1-python3
 Requires: typelib(Gdk) = 3.0
-%else
 Requires: python3-dbus
-%endif
-%if 0%{?mageia}
-Requires: python3-gobject3
-%else
 Requires: python-gobject3
-%endif
 Requires: python-setproctitle
-Requires: python-pyudev
+Requires: python3dist(pyudev)
 Requires: python-daemonize
 Requires: xautomation
 
 %description -n openrazer-daemon
 Userspace daemon that abstracts access to the kernel driver. Provides a DBus service for applications to use.
 
-
-%package -n python3-openrazer
+%package -n python-openrazer
 Summary: OpenRazer Python library
 Group: System Environment/Libraries
 Obsoletes: python3-razer
@@ -76,19 +67,11 @@ BuildRequires: python3-devel
 BuildRequires: python3-setuptools
 Requires: openrazer-daemon
 Requires: python
-%if 0%{?suse_version}
-Requires: dbus-1-python3
-%else
 Requires: python3-dbus
-%endif
-%if 0%{?mageia}
-Requires: python3-gobject3
-%else
 Requires: python-gobject3
-%endif
-Requires: python3-numpy
+Requires: python-numpy
 
-%description -n python3-openrazer
+%description -n python-openrazer
 Python library for accessing the daemon from Python.
 
 %prep
@@ -115,25 +98,6 @@ set -e
 
 getent group plugdev >/dev/null || groupadd -r plugdev
 
-
-%if 0%{?mageia}
-
-%posttrans -n openrazer-kernel-modules-dkms
-dkms add -m %{dkms_name} -v %{dkms_version} --rpm_safe_upgrade
-dkms build -m %{dkms_name} -v %{dkms_version} --rpm_safe_upgrade
-dkms install -m %{dkms_name} -v %{dkms_version} --rpm_safe_upgrade
-
-echo -e "\e[31m********************************************"
-echo -e "\e[31m* To complete installation, please run:    *"
-echo -e "\e[31m* # sudo gpasswd -a <yourUsername> plugdev *"
-echo -e "\e[31m********************************************"
-echo -e -n "\e[39m"
-
-%preun -n openrazer-kernel-modules-dkms
-dkms remove -m %{dkms_name} -v %{dkms_version} --rpm_safe_upgrade --all
-
-%else
-
 %posttrans -n openrazer-kernel-modules-dkms
 #!/bin/sh
 set -e
@@ -153,7 +117,6 @@ if [ "$(dkms status -m %{dkms_name} -v %{dkms_version})" ]; then
   dkms remove -m %{dkms_name} -v %{dkms_version} --all
 fi
 
-%endif
 
 
 %files
@@ -168,14 +131,14 @@ fi
 
 %files -n openrazer-daemon
 %{_bindir}/openrazer-daemon
-%{python3_sitelib}/openrazer_daemon/
-%{python3_sitelib}/openrazer_daemon-*.egg-info/
+%{python_sitelib}/openrazer_daemon/
+%{python_sitelib}/openrazer_daemon-*.egg-info/
 %{_datadir}/openrazer/
 %{_datadir}/dbus-1/services/org.razer.service
 %{_prefix}/lib/systemd/user/openrazer-daemon.service
 %{_mandir}/man5/razer.conf.5*
 %{_mandir}/man8/openrazer-daemon.8*
 
-%files -n python3-openrazer
-%{python3_sitelib}/openrazer/
-%{python3_sitelib}/openrazer-*.egg-info/
+%files -n python-openrazer
+%{python_sitelib}/openrazer/
+%{python_sitelib}/openrazer-*.egg-info/
