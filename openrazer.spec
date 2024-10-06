@@ -1,10 +1,10 @@
 %define dkms_name openrazer-driver
-%define dkms_version 3.8.0
+%define dkms_version 3.9.0
 
 #define gitcommit 6ae1f7d55bf10cc6b5cb62a5ce99ff22c43e0701
 
 Name: openrazer
-Version: 3.8.0
+Version: 3.9.0
 Release: 1
 Summary: Open source driver and user-space daemon for managing Razer devices
 
@@ -54,6 +54,7 @@ Requires: python-setproctitle
 Requires: python3dist(pyudev)
 Requires: python-daemonize
 Requires: xautomation
+Requires: libnotify
 
 %description -n openrazer-daemon
 Userspace daemon that abstracts access to the kernel driver. Provides a DBus service for applications to use.
@@ -61,7 +62,6 @@ Userspace daemon that abstracts access to the kernel driver. Provides a DBus ser
 %package -n python-openrazer
 Summary: OpenRazer Python library
 Group: System Environment/Libraries
-Obsoletes: python3-razer
 Provides: python3-razer
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
