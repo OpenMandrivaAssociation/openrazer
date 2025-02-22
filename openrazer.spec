@@ -50,6 +50,7 @@ Requires: python
 Requires: typelib(Gdk) = 3.0
 Requires: python3-dbus
 Requires: python-gobject3
+Requires: python-gi
 Requires: python-setproctitle
 Requires: python3dist(pyudev)
 Requires: python-daemonize
