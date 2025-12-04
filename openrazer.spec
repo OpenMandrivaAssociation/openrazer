@@ -1,10 +1,10 @@
 %define dkms_name openrazer-driver
-%define dkms_version 3.10.0
+%define dkms_version 3.11.0
 
 #define gitcommit 6ae1f7d55bf10cc6b5cb62a5ce99ff22c43e0701
 
 Name: openrazer
-Version: 3.10.0
+Version: 3.11.0
 Release: 1
 Summary: Open source driver and user-space daemon for managing Razer devices
 
