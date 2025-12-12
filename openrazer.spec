@@ -5,7 +5,7 @@
 
 Name: openrazer
 Version: 3.11.0
-Release: 1
+Release: 2
 Summary: Open source driver and user-space daemon for managing Razer devices
 
 License: GPL-2.0
