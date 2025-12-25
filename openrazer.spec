@@ -11,6 +11,7 @@ Summary: Open source driver and user-space daemon for managing Razer devices
 License: GPL-2.0
 URL: https://github.com/openrazer/openrazer
 Source0: https://github.com/openrazer/openrazer/releases/download/v%{version}/openrazer-%{version}.tar.xz
+BuildRequires:  make
 
 BuildArch: noarch
 
