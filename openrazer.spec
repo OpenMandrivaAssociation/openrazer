@@ -1,5 +1,5 @@
 %define dkms_name openrazer-driver
-%define dkms_version 3.12.1
+%define dkms_version 3.12.4
 
 #define gitcommit 6ae1f7d55bf10cc6b5cb62a5ce99ff22c43e0701
 
