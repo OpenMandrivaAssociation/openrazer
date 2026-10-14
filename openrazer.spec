@@ -5,9 +5,9 @@
 
 Name: openrazer
 Version: 3.12.4
-Release: 1
+Release: 2
 Summary: Open source driver and user-space daemon for managing Razer devices
-
+Group: System/Kernel
 License: GPL-2.0
 URL: https://github.com/openrazer/openrazer
 Source0: https://github.com/openrazer/openrazer/releases/download/v%{version}/openrazer-%{version}.tar.xz
@@ -43,17 +43,17 @@ Summary: OpenRazer Service package
 Group: System Environment/Daemons
 Obsoletes: razer-daemon
 Provides: razer-daemon
-BuildRequires: python-devel
-BuildRequires: python-setuptools
+BuildRequires: pkgconfig(python3)
+BuildRequires: python%{pyver}dist(setuptools)
 Requires: openrazer-kernel-modules-dkms
 Requires: python
 
 Requires: typelib(Gdk) = 3.0
-Requires: python3-dbus
+Requires: python%{pyver}dist(dbus-python)
 Requires: python-gobject3
 Requires: python-gi
 Requires: python-setproctitle
-Requires: python3dist(pyudev)
+Requires: python%{pyver}dist(pyudev)
 Requires: python-daemonize
 Requires: xautomation
 Requires: libnotify
@@ -65,11 +65,11 @@ Userspace daemon that abstracts access to the kernel driver. Provides a DBus ser
 Summary: OpenRazer Python library
 Group: System Environment/Libraries
 Provides: python3-razer
-BuildRequires: python3-devel
-BuildRequires: python3-setuptools
+BuildRequires: pkgconfig(python3)
+BuildRequires: python%{pyver}dist(setuptools)
 Requires: openrazer-daemon
 Requires: python
-Requires: python3-dbus
+Requires: python%{pyver}dist(dbus-python)
 Requires: python-gobject3
 Requires: python-numpy
 
